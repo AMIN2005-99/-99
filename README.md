@@ -3,273 +3,122 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="لعبة Super Fun Toy - منتج ترفيهي مبتكر للأطفال">
-  <meta name="keywords" content="لعبة، أطفال، ترفيه، منتج جديد">
-  <meta name="author" content="AMIN2005-99">
-  <meta property="og:title" content="Super Fun Toy - المنتج الثوري">
-  <meta property="og:description" content="اكتشف لعبة Super Fun Toy المبتكرة للأطفال">
-  <meta property="og:image" content="https://amin2005-99.github.io/super-fun-toy/assets/images/toy-image.webp">
-  <title>Super Fun Toy | المنتج الثوري للأطفال</title>
-  <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <title>تمور الطاقة | Tamr Energy</title>
   <style>
-    :root {
-      --primary-color: #2e86de;
-      --secondary-color: #54a0ff;
-      --accent-color: #ffe564;
-      --text-color: #333;
-      --light-gray: #f8f9fa;
-      --white: #ffffff;
-      --border-radius: 8px;
-      --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      --transition: all 0.3s ease;
-    }
-
-    * {
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #fdf6e3;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
-
-    body {
-      font-family: 'Tajawal', sans-serif;
-      background-color: var(--light-gray);
-      color: var(--text-color);
-      line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-
     header {
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      color: var(--white);
-      padding: 1.5rem 0;
+      background-color: #8b4513;
+      color: white;
+      padding: 20px;
       text-align: center;
-      box-shadow: var(--box-shadow);
     }
-
+    header h1 {
+      margin: 0;
+    }
     .hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 3rem 0;
+      background-image: url('https://i.imgur.com/mFe88G9.jpg'); /* رابط صورة */
+      background-size: cover;
+      background-position: center;
+      padding: 100px 20px;
+      color: white;
       text-align: center;
     }
-
-    .product-card {
-      background-color: var(--white);
-      border-radius: var(--border-radius);
-      box-shadow: var(--box-shadow);
-      padding: 2rem;
-      margin: 2rem auto;
-      max-width: 600px;
-      transition: var(--transition);
+    .hero h2 {
+      font-size: 40px;
+      margin: 0;
     }
-
-    .product-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    .hero p {
+      font-size: 20px;
+      margin-top: 10px;
     }
-
-    .product-image {
-      width: 100%;
-      max-width: 400px;
-      height: auto;
-      border-radius: var(--border-radius);
-      margin: 1.5rem 0;
-      object-fit: cover;
-    }
-
-    .cta-badge {
-      background-color: var(--accent-color);
-      padding: 0.75rem 1.5rem;
-      border-radius: 50px;
-      font-weight: 700;
-      display: inline-block;
-      margin: 1rem 0;
-      font-size: 1.1rem;
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    .form-control {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border: 1px solid #ddd;
-      border-radius: var(--border-radius);
-      font-size: 1rem;
-      transition: var(--transition);
-    }
-
-    .form-control:focus {
-      outline: none;
-      border-color: var(--primary-color);
-      box-shadow: 0 0 0 3px rgba(46, 134, 222, 0.2);
-    }
-
     .btn {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      background-color: var(--primary-color);
-      color: var(--white);
-      border: none;
-      border-radius: var(--border-radius);
-      font-size: 1rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: var(--transition);
+      background-color: #ff9800;
+      color: white;
+      padding: 15px 30px;
       text-decoration: none;
+      border-radius: 30px;
+      display: inline-block;
+      margin-top: 20px;
+      transition: 0.3s;
     }
-
     .btn:hover {
-      background-color: #1a73e8;
-      transform: translateY(-2px);
+      background-color: #e68900;
     }
-
-    .btn-block {
-      display: block;
-      width: 100%;
-    }
-
-    footer {
-      background-color: var(--primary-color);
-      color: var(--white);
+    .section {
+      padding: 50px 20px;
       text-align: center;
-      padding: 1.5rem 0;
-      margin-top: auto;
     }
-
-    @media (max-width: 768px) {
-      .container {
-        padding: 1rem;
-      }
-      
-      .product-card {
-        padding: 1.5rem;
-      }
+    .section h3 {
+      color: #8b4513;
+    }
+    .contact {
+      background-color: #fff3e0;
+      padding: 40px 20px;
+      text-align: center;
+      border-top: 2px solid #8b4513;
+      border-bottom: 2px solid #8b4513;
+    }
+    .contact h3 {
+      color: #8b4513;
+      margin-bottom: 15px;
+    }
+    .contact p {
+      margin: 5px;
+      font-size: 18px;
+    }
+    footer {
+      background-color: #8b4513;
+      color: white;
+      text-align: center;
+      padding: 10px;
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <h1>لعبة Super Fun Toy</h1>
-      <p>المنتج الثوري الذي سيحبه أطفالك</p>
-    </div>
-  </header>
 
-  <main class="container">
-    <section class="hero">
-      <h2>اكتشف عالم المرح!</h2>
-      <p>منتجنا الجديد مصمم لتنمية مهارات طفلك بطريقة ممتعة</p>
-    </section>
+<header>
+  <h1>تمور الطاقة | Tamr Energy</h1>
+</header>
 
-    <section class="product-card">
-      <h3>خصائص المنتج</h3>
-      <ul style="list-style-position: inside; margin: 1rem 0;">
-        <li>مصنوع من مواد آمنة 100%</li>
-        <li>يعزز الإبداع والتفكير المنطقي</li>
-        <li>مناسب للأعمار من 3 إلى 10 سنوات</li>
-        <li>تصميم عصري وجذاب</li>
-      </ul>
+<div class="hero">
+  <h2>طاقة طبيعية للرياضيين</h2>
+  <p>تمر طبيعي - طاقة - صحة - قوة</p>
+  <a href="https://wa.me/213664227662" class="btn" target="_blank">اطلب الآن عبر واتساب</a>
+</div>
 
-      <img src="/amii.jpg" 
-           alt="Super Fun Toy" 
-           class="product-image"
-           loading="lazy"
-           width="400"
-           height="300">
+<div class="section">
+  <h3>لماذا تختار تمرنا؟</h3>
+  <p>✔️ طاقة طبيعية فورية<br>
+     ✔️ غني بالبوتاسيوم والمعادن<br>
+     ✔️ مثالي للرياضيين ومحبي الصحة<br>
+     ✔️ توصيل لجميع الولايات
+  </p>
+</div>
 
-      <div class="cta-badge">عرض خاص لفترة محدودة!</div>
+<div class="section" style="background-color: #fff3e0;">
+  <h3>أنواع التمور المتوفرة:</h3>
+  <p>🥇 دقلة نور - فاخر<br>
+     🏅 مجدول - طري<br>
+     🌿 عجوة - تمر نبوي<br>
+     🍃 تمر عضوي 100%
+  </p>
+</div>
 
-      <form id="orderForm" action="https://formspree.io/f/mnnpedra" method="POST">
-        <div class="form-group">
-          <input type="text" 
-                 name="name" 
-                 class="form-control" 
-                 placeholder="الاسم الكامل" 
-                 required
-                 aria-label="الاسم الكامل">
-        </div>
-        
-        <div class="form-group">
-          <input type="email" 
-                 name="email" 
-                 class="form-control" 
-                 placeholder="البريد الإلكتروني" 
-                 required
-                 aria-label="البريد الإلكتروني">
-        </div>
-        
-        <div class="form-group">
-          <input type="tel" 
-                 name="phone" 
-                 class="form-control" 
-                 placeholder="رقم الهاتف" 
-                 required
-                 aria-label="رقم الهاتف"
-                 pattern="[0-9]{10}">
-        </div>
-        
-        <div class="form-group">
-          <textarea name="note" 
-                    class="form-control" 
-                    placeholder="ملاحظات إضافية (اختياري)"
-                    rows="3"
-                    aria-label="ملاحظات إضافية"></textarea>
-        </div>
-        
-        <button type="submit" class="btn btn-block">أرسل الطلب الآن</button>
-      </form>
-    </section>
-  </main>
+<div class="contact">
+  <h3>📞 لمزيد من الطلب والاستفسار:</h3>
+  <p>☎️ 0664227662</p>
+  <p>☎️ 0541527628</p>
+  <p>📧 tfyeche.amine.2005@gmail.com</p>
+</div>
 
-  <footer>
-    <div class="container">
-      <p>© 2024 Super Fun Toy. جميع الحقوق محفوظة</p>
-      <p>تواصل معنا: info@superfuntoy.com</p>
-    </div>
-  </footer>
+<footer>
+  <p>© 2025 Tamr Energy | جميع الحقوق محفوظة</p>
+</footer>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // تحسين تجربة المستخدم
-      const form = document.getElementById('orderForm');
-      
-      form.addEventListener('submit', function(e) {
-        const submitBtn = form.querySelector('button[type="submit"]');
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'جاري الإرسال...';
-        
-        // يمكنك إضافة إرسال بيانات إلى Google Analytics هنا
-        if (typeof gtag !== 'undefined') {
-          gtag('event', 'form_submit', {
-            'event_category': 'engagement',
-            'event_label': 'Order Form'
-          });
-        }
-      });
-      
-     
-
-        lazyImages.forEach(function(lazyImage) {
-          lazyImageObserver.observe(lazyImage);
-        });
-      }
-    });
-  </script>
 </body>
 </html>
