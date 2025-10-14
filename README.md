@@ -1,124 +1,200 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تمور الطاقة | Tamr Energy</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>اختيار الموضوع</title>
   <style>
     body {
       font-family: 'Cairo', sans-serif;
-      background-color: #fdf6e3;
-      margin: 0;
-      padding: 0;
+      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
     }
-    header {
-      background-color: #8b4513;
-      color: white;
+
+    h1 {
+      color: #0d47a1;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    form {
+      background: white;
       padding: 20px;
-      text-align: center;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 600px;
     }
-    header h1 {
-      margin: 0;
+
+    label {
+      font-weight: bold;
+      color: #0d47a1;
     }
-    .hero {
-      background-image: url('https://i.imgur.com/mFe88G9.jpg'); /* رابط صورة */
-      background-size: cover;
-      background-position: center;
-      padding: 100px 20px;
-      color: white;
-      text-align: center;
+
+    input {
+      width: 100%;
+      margin: 8px 0 15px;
+      padding: 10px;
+      border: 1px solid #90caf9;
+      border-radius: 8px;
+      font-size: 1em;
     }
-    .hero h2 {
-      font-size: 40px;
-      margin: 0;
-    }
-    .hero p {
-      font-size: 20px;
-      margin-top: 10px;
-    }
-    .btn {
-      background-color: #ff9800;
-      color: white;
-      padding: 15px 30px;
-      text-decoration: none;
-      border-radius: 30px;
-      display: inline-block;
-      margin-top: 20px;
-      transition: 0.3s;
-    }
-    .btn:hover {
-      background-color: #e68900;
-    }
-    .section {
-      padding: 50px 20px;
-      text-align: center;
-    }
-    .section h3 {
-      color: #8b4513;
-    }
-    .contact {
-      background-color: #fff3e0;
-      padding: 40px 20px;
-      text-align: center;
-      border-top: 2px solid #8b4513;
-      border-bottom: 2px solid #8b4513;
-    }
-    .contact h3 {
-      color: #8b4513;
+
+    #searchTopic {
       margin-bottom: 15px;
     }
-    .contact p {
-      margin: 5px;
-      font-size: 18px;
+
+    .topics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
     }
-    footer {
-      background-color: #8b4513;
-      color: white;
-      text-align: center;
+
+    .topic-card {
+      background: #f5f5f5;
+      border-radius: 10px;
       padding: 10px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .topic-card:hover {
+      background: #bbdefb;
+    }
+
+    .topic-card.selected {
+      background: #2196f3;
+      color: white;
+      font-weight: bold;
+    }
+
+    button {
+      background: #0d47a1;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1565c0;
+    }
+
+    @media (max-width: 768px) {
+      form { width: 100%; }
+      h1 { font-size: 1.6em; }
     }
   </style>
 </head>
 <body>
+  <h1>📚 اختيار الموضوع</h1>
+  <form id="studentForm">
+    <label>الاسم:</label>
+    <input type="text" id="firstName" required placeholder="أدخل اسمك">
 
-<header>
-  <h1>تمور الطاقة | Tamr Energy</h1>
-</header>
+    <label>اللقب:</label>
+    <input type="text" id="lastName" required placeholder="أدخل لقبك">
 
-<div class="hero">
-  <h2>طاقة طبيعية للرياضيين</h2>
-  <p>تمر طبيعي - طاقة - صحة - قوة</p>
-  <a href="https://wa.me/213664227662" class="btn" target="_blank">اطلب الآن عبر واتساب</a>
-</div>
+    <label>ابحث في المواضيع:</label>
+    <input type="text" id="searchTopic" placeholder="ابحث في المواضيع...">
 
-<div class="section">
-  <h3>لماذا تختار تمرنا؟</h3>
-  <p>✔️ طاقة طبيعية فورية<br>
-     ✔️ غني بالبوتاسيوم والمعادن<br>
-     ✔️ مثالي للرياضيين ومحبي الصحة<br>
-     ✔️ توصيل لجميع الولايات
-  </p>
-</div>
+    <div class="topics" id="topicsContainer"></div>
 
-<div class="section" style="background-color: #fff3e0;">
-  <h3>أنواع التمور المتوفرة:</h3>
-  <p>🥇 دقلة نور - فاخر<br>
-     🏅 مجدول - طري<br>
-     🌿 عجوة - تمر نبوي<br>
-     🍃 تمر عضوي 100%
-  </p>
-</div>
+    <button type="submit">تأكيد الاختيار ✅</button>
+  </form>
 
-<div class="contact">
-  <h3>📞 لمزيد من الطلب والاستفسار:</h3>
-  <p>☎️ 0664227662</p>
-  <p>☎️ 0541527628</p>
-  <p>📧 tfyeche.amine.2005@gmail.com</p>
-</div>
+  <script>
+    const topics = [
+      "الذات والوعي",
+      "رحلتك الخاصة: كيف تكتشف نفسك قبل أن تختار طريقك؟",
+      "من الفوضى إلى التركيز: فن إدارة انتباهك في زمن التشويش",
+      "الذكاء العاطفي… كيف تفهم قلبك قبل أن تحاول فهم الآخرين؟",
+      "القيم الشخصية: البوصلة الخفية التي تقود قراراتك",
+      "بين الشغف والواقعية: كيف تختار مسارك دون أن تندم؟",
+      "فن الهدوء الذكي: كيف تكون ثابتًا في عالم متسارع؟",
+      "لغة الجسد الخفية: كيف “تتحدث” دون أن تنطق؟",
+      "التأثير بدون سلطة: كيف تقود الآخرين بأسلوبك فقط؟",
+      "كيف تبدأ محادثة تغيّر حياتك؟",
+      "الكاريزما… مهارة أم طبيعة؟ كيف تبني حضورك بثقة؟",
+      "الذكاء الاجتماعي في العلاقات الجامعية والمهنية",
+      "فن الإقناع: كيف تزرع فكرة في ذهن شخص آخر؟",
+      "كيف تولد الأفكار العظيمة؟ (تقنيات التفكير الإبداعي)",
+      "من فكرة إلى تأثير: كيف تحوّل حلمك إلى مشروع يخدم الآخرين؟",
+      "الريادة الهادفة: أن تربح وتُحدث فرقًا في الوقت نفسه",
+      "التجارة الإلكترونية والذكاء الاصطناعي: فرص جيل جديد",
+      "العمل الحر: الحرية كخيار مهني حقيقي",
+      "الذكاء الاصطناعي والإنسان: من يخدم من؟",
+      "كيف تتعامل مع الفشل دون أن تفقد شغفك؟",
+      "فن المثابرة: كيف تستمر حين يتوقف الآخرون؟",
+      "كيف تتغلب على التسويف دون أن تعتمد على التحفيز؟",
+      "العادات الصغيرة تصنع العظمة: قانون 1٪ يوميًا",
+      "مواجهة الخوف من التحدث أمام الناس: خطوات عملية",
+      "الطالب القائد: كيف تصنع تأثيرًا حقيقيًا داخل الجامعة؟",
+      "بين لغتين: كيف تحافظ على هويتك وتتقن لغة العالم؟",
+      "الرسول ﷺ كقدوة قيادية وإنسانية في العصر الحديث",
+      "القراءة كرحلة وليس هواية: كيف تقرأ لتتغيّر؟",
+      "قوة التطوع: أن تكون نافعًا أكثر من أن تكون مشهورًا",
+      "جيل المعرفة: كيف تتعلم ذاتيًا وتصبح خبيرًا بدون شهادة؟",
+      "من الجامعة إلى العالم: كيف تبدأ قصتك الآن؟"
+    ];
 
-<footer>
-  <p>© 2025 Tamr Energy | جميع الحقوق محفوظة</p>
-</footer>
+    const topicsContainer = document.getElementById('topicsContainer');
+    const searchInput = document.getElementById('searchTopic');
+    let selectedTopic = null;
 
+    function loadTopics() {
+      topicsContainer.innerHTML = '';
+      const takenTopics = JSON.parse(localStorage.getItem('chosenTopics') || '[]');
+      topics.forEach(topic => {
+        const card = document.createElement('div');
+        card.className = 'topic-card';
+        card.textContent = topic;
+
+        if (takenTopics.find(t => t.topic === topic)) {
+          card.style.background = '#ccc';
+          card.style.cursor = 'not-allowed';
+          card.title = 'تم اختياره من قبل';
+        } else {
+          card.addEventListener('click', () => {
+            document.querySelectorAll('.topic-card').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            selectedTopic = topic;
+          });
+        }
+        topicsContainer.appendChild(card);
+      });
+    }
+
+    searchInput.addEventListener('input', e => {
+      const term = e.target.value.toLowerCase();
+      document.querySelectorAll('.topic-card').forEach(card => {
+        card.style.display = card.textContent.toLowerCase().includes(term) ? 'block' : 'none';
+      });
+    });
+
+    document.getElementById('studentForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName = document.getElementById('lastName').value.trim();
+
+      if (!selectedTopic) return alert("يرجى اختيار موضوع أولاً!");
+
+      const data = JSON.parse(localStorage.getItem('chosenTopics') || '[]');
+      data.push({ name: firstName + " " + lastName, topic: selectedTopic });
+      localStorage.setItem('chosenTopics', JSON.stringify(data));
+
+      alert("✅ تم الحجز بنجاح!");
+      location.reload();
+    });
+
+    loadTopics();
+  </script>
 </body>
 </html>
