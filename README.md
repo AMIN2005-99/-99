@@ -3,112 +3,154 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>اختيار الموضوع</title>
+  <title>اختيار المواضيع</title>
   <style>
     body {
-      font-family: 'Cairo', sans-serif;
-      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+      font-family: "Cairo", sans-serif;
+      background: linear-gradient(135deg, #2193b0, #6dd5ed);
+      color: #222;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 30px;
+      justify-content: flex-start;
     }
 
     h1 {
-      color: #0d47a1;
-      margin-bottom: 20px;
-      text-align: center;
+      margin-top: 30px;
+      color: #fff;
+      text-shadow: 1px 1px 4px #000;
     }
 
-    form {
-      background: white;
+    .container {
+      background: #fff;
       padding: 20px;
       border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin: 20px;
       width: 90%;
-      max-width: 600px;
+      max-width: 800px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
     }
 
     label {
       font-weight: bold;
-      color: #0d47a1;
     }
 
-    input {
+    input, select, button {
       width: 100%;
-      margin: 8px 0 15px;
       padding: 10px;
-      border: 1px solid #90caf9;
-      border-radius: 8px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: 1px solid #ccc;
       font-size: 1em;
     }
 
-    #searchTopic {
-      margin-bottom: 15px;
+    button {
+      background: #2193b0;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
     }
 
-    .topics {
+    button:hover {
+      background: #17657a;
+    }
+
+    .topic-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 10px;
-      margin-top: 10px;
+      margin-top: 20px;
     }
 
     .topic-card {
       background: #f5f5f5;
+      padding: 12px;
       border-radius: 10px;
-      padding: 10px;
       cursor: pointer;
-      text-align: center;
       transition: all 0.2s;
+      border: 2px solid transparent;
     }
 
     .topic-card:hover {
-      background: #bbdefb;
+      background: #e0f7fa;
+      transform: scale(1.02);
     }
 
-    .topic-card.selected {
-      background: #2196f3;
-      color: white;
-      font-weight: bold;
-    }
-
-    button {
-      background: #0d47a1;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 10px;
-      font-size: 1em;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #1565c0;
+    .selected {
+      border-color: #2193b0;
+      background: #b2ebf2;
     }
 
     @media (max-width: 768px) {
-      form { width: 100%; }
-      h1 { font-size: 1.6em; }
+      .topic-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .admin-table th, .admin-table td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .admin-table th {
+      background: #2193b0;
+      color: white;
+    }
+
+    .message {
+      background: #28a745;
+      color: white;
+      padding: 10px;
+      border-radius: 10px;
+      margin-top: 10px;
+      display: none;
     }
   </style>
 </head>
 <body>
-  <h1>📚 اختيار الموضوع</h1>
-  <form id="studentForm">
-    <label>الاسم:</label>
-    <input type="text" id="firstName" required placeholder="أدخل اسمك">
 
-    <label>اللقب:</label>
-    <input type="text" id="lastName" required placeholder="أدخل لقبك">
+  <h1>📘 اختيار الموضوع</h1>
 
-    <label>ابحث في المواضيع:</label>
-    <input type="text" id="searchTopic" placeholder="ابحث في المواضيع...">
+  <div class="container" id="studentPage">
+    <label>الاسم واللقب:</label>
+    <input type="text" id="studentName" placeholder="اكتب اسمك الكامل" />
 
-    <div class="topics" id="topicsContainer"></div>
+    <label>اختر الموضوع:</label>
+    <input type="text" id="selectedTopic" readonly placeholder="اختر موضوعًا من القائمة أدناه" />
 
-    <button type="submit">تأكيد الاختيار ✅</button>
-  </form>
+    <div class="topic-list" id="topicList"></div>
+
+    <button id="saveBtn">💾 حفظ الاختيار</button>
+    <p class="message" id="successMsg">✅ تم حفظ اختيارك بنجاح!</p>
+
+    <button onclick="goToAdmin()">🔒 صفحة المشرف</button>
+  </div>
+
+  <!-- صفحة المشرف -->
+  <div class="container" id="adminPage" style="display:none;">
+    <h2>📋 قائمة الطلبة والمواضيع المختارة</h2>
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>الاسم واللقب</th>
+          <th>الموضوع</th>
+        </tr>
+      </thead>
+      <tbody id="adminTableBody"></tbody>
+    </table>
+    <button onclick="logoutAdmin()">⬅️ تسجيل الخروج</button>
+  </div>
 
   <script>
     const topics = [
@@ -145,56 +187,80 @@
       "من الجامعة إلى العالم: كيف تبدأ قصتك الآن؟"
     ];
 
-    const topicsContainer = document.getElementById('topicsContainer');
-    const searchInput = document.getElementById('searchTopic');
-    let selectedTopic = null;
+    const topicList = document.getElementById('topicList');
+    const selectedTopicInput = document.getElementById('selectedTopic');
+    const successMsg = document.getElementById('successMsg');
 
-    function loadTopics() {
-      topicsContainer.innerHTML = '';
-      const takenTopics = JSON.parse(localStorage.getItem('chosenTopics') || '[]');
-      topics.forEach(topic => {
-        const card = document.createElement('div');
-        card.className = 'topic-card';
-        card.textContent = topic;
+    // عرض المواضيع
+    topics.forEach(topic => {
+      const div = document.createElement('div');
+      div.textContent = topic;
+      div.className = 'topic-card';
+      div.onclick = () => selectTopic(div, topic);
+      topicList.appendChild(div);
+    });
 
-        if (takenTopics.find(t => t.topic === topic)) {
-          card.style.background = '#ccc';
-          card.style.cursor = 'not-allowed';
-          card.title = 'تم اختياره من قبل';
-        } else {
-          card.addEventListener('click', () => {
-            document.querySelectorAll('.topic-card').forEach(c => c.classList.remove('selected'));
-            card.classList.add('selected');
-            selectedTopic = topic;
-          });
-        }
-        topicsContainer.appendChild(card);
-      });
+    function selectTopic(div, topic) {
+      document.querySelectorAll('.topic-card').forEach(c => c.classList.remove('selected'));
+      div.classList.add('selected');
+      selectedTopicInput.value = topic;
     }
 
-    searchInput.addEventListener('input', e => {
-      const term = e.target.value.toLowerCase();
-      document.querySelectorAll('.topic-card').forEach(card => {
-        card.style.display = card.textContent.toLowerCase().includes(term) ? 'block' : 'none';
+    // حفظ الاختيار
+    document.getElementById('saveBtn').onclick = () => {
+      const name = document.getElementById('studentName').value.trim();
+      const topic = selectedTopicInput.value.trim();
+      if (!name || !topic) {
+        alert("الرجاء إدخال الاسم واختيار الموضوع");
+        return;
+      }
+
+      let data = JSON.parse(localStorage.getItem('students') || "[]");
+
+      // التحقق من عدم تكرار الموضوع
+      if (data.some(d => d.topic === topic)) {
+        alert("هذا الموضوع تم اختياره بالفعل من قبل طالب آخر!");
+        return;
+      }
+
+      data.push({ name, topic });
+      localStorage.setItem('students', JSON.stringify(data));
+
+      successMsg.style.display = "block";
+      setTimeout(() => successMsg.style.display = "none", 3000);
+
+      document.getElementById('studentName').value = "";
+      selectedTopicInput.value = "";
+      document.querySelectorAll('.topic-card').forEach(c => c.classList.remove('selected'));
+    };
+
+    // صفحة المشرف
+    function goToAdmin() {
+      const pass = prompt("أدخل كلمة مرور المشرف:");
+      if (pass === "admin123") {
+        document.getElementById('studentPage').style.display = "none";
+        document.getElementById('adminPage').style.display = "block";
+        loadAdminTable();
+      } else {
+        alert("كلمة المرور غير صحيحة");
+      }
+    }
+
+    function logoutAdmin() {
+      document.getElementById('adminPage').style.display = "none";
+      document.getElementById('studentPage').style.display = "block";
+    }
+
+    function loadAdminTable() {
+      const data = JSON.parse(localStorage.getItem('students') || "[]");
+      const tbody = document.getElementById('adminTableBody');
+      tbody.innerHTML = "";
+      data.forEach(d => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${d.name}</td><td>${d.topic}</td>`;
+        tbody.appendChild(tr);
       });
-    });
-
-    document.getElementById('studentForm').addEventListener('submit', e => {
-      e.preventDefault();
-      const firstName = document.getElementById('firstName').value.trim();
-      const lastName = document.getElementById('lastName').value.trim();
-
-      if (!selectedTopic) return alert("يرجى اختيار موضوع أولاً!");
-
-      const data = JSON.parse(localStorage.getItem('chosenTopics') || '[]');
-      data.push({ name: firstName + " " + lastName, topic: selectedTopic });
-      localStorage.setItem('chosenTopics', JSON.stringify(data));
-
-      alert("✅ تم الحجز بنجاح!");
-      location.reload();
-    });
-
-    loadTopics();
+    }
   </script>
 </body>
 </html>
